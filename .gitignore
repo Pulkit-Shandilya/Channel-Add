@@ -1,1 +1,10 @@
 .venv\
+env\
+venv\
+__pycache__\
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.fac
+*.pro
