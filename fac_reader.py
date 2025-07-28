@@ -80,8 +80,8 @@ def read_fac_file(file_path, force_method=None):
 # Usage examples
 if __name__ == "__main__":
     # Automatic method selection (recommended)
-    data = read_fac_file('your_file.fac')
-    
+    data = read_fac_file("Data/TABLE_II_May'25/ANNUAL_MAN_CHARGE.fac")
+
     # Force specific method if needed
     # data = read_fac_file('file.fac', force_method='manual')
     # data = read_fac_file('file.fac', force_method='pandas')
