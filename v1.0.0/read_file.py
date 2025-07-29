@@ -132,19 +132,21 @@ def print_fac_summary(data_dict: Dict[str, List]) -> None:
     print(data_dict)
     
     for file_path, file_data in data_dict.items():
-        print(f"\nFile: {Path(file_path).name}")
-        print(f"  Path: {file_path}")
-        print(f"  Rows: {len(file_data)}")
-        if file_data:
-            print(f"  Columns: {len(file_data[0])}")
-            print(f"  First row sample: {file_data[0][:5]}...")
-        else:
-            print("  No data")
+        Add_Channel(file_data, file_path)
+        # print(f"\nFile: {Path(file_path).name}")
+        # print(f"  Path: {file_path}")
+        # print(f"  Rows: {len(file_data)}")
+        # if file_data:
+        #     print(f"  Columns: {len(file_data[0])}")
+        #     print(f"  First row sample: {file_data[0][:5]}...")
+        # else:
+        #     print("  No data")
 
 
 
 
 def Add_Channel(Data,data_address):
+    print(f"Data from {data_address}:     {Data}")
     if not Data:
         print("No data to process")
         return
@@ -179,7 +181,7 @@ def Add_Channel(Data,data_address):
             seen_products.add(product_key)
             unique_products.append(product_row)
 
-            
+    
 
 if __name__ == "__main__":
     folder_data = read_fac_files('subfolder')
