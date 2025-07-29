@@ -129,6 +129,7 @@ def print_fac_summary(data_dict: Dict[str, List]) -> None:
     
     print(f"\n=== FAC Files Summary ===")
     print(f"Total files loaded: {len(data_dict)}")
+    print(data_dict)
     
     for file_path, file_data in data_dict.items():
         print(f"\nFile: {Path(file_path).name}")
@@ -140,6 +141,45 @@ def print_fac_summary(data_dict: Dict[str, List]) -> None:
         else:
             print("  No data")
 
+
+
+
+def Add_Channel(Data,data_address):
+    if not Data:
+        print("No data to process")
+        return
+    
+    # Get the first row (header) to find column positions
+    header_row = Data[0]
+    channel_address = None
+    product_address = None
+
+    for col_index, value in enumerate(header_row):
+        if str(value).lower() == 'channel':
+            channel_address = col_index
+        elif str(value).lower() == 'product':
+            product_address = col_index
+
+    if channel_address is not None and product_address is not None:
+        print(f"Found channel at column {channel_address}, product at column {product_address}")
+    else:
+        return
+        print("Could not find both 'channel' and 'product' columns")
+
+    # Create array with unique elements from product_address column onwards
+    unique_products = []
+    seen_products = set()
+    
+    for row in Data[1:]:  # Skip header row
+        # Get the product value and all columns from product_address onwards
+        product_row = row[product_address:]
+        product_key = str(product_row[0])  # Use first element as key for uniqueness
+        
+        if product_key not in seen_products:
+            seen_products.add(product_key)
+            unique_products.append(product_row)
+
+            
 
 if __name__ == "__main__":
     folder_data = read_fac_files('subfolder')
